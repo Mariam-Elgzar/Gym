@@ -33,15 +33,15 @@ jobs:
           
       - name: Build with Maven
         run: mvn -B clean package
+        working-directory: Gym
 
       - name: Run tests
         run: mvn test
+        working-directory: Gym
 
-      
-
-      # Runs a set of commands using the runners shell
       - name: Start app and verify endpoint
-        run:  |
+        run: |
           nohup java -jar target/*.jar &
-          sleep 10
+          sleep 20
           curl -f http://localhost:8080/ || exit 1
+        working-directory: Gym
